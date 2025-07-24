@@ -1,0 +1,81 @@
+databaseChangeLog:
+- changeSet:
+    id: 231206-1
+    author: rafael.zapata
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: PK_c_form
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: st_name
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: st_description
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: fg_active
+            type: BOOLEAN
+        - column:
+            name: str_js_ui_schema
+            type: TEXT
+        - column:
+            name: str_js_schema
+            type: TEXT
+        tableName: k_form
+- changeSet:
+    id: 231206-2
+    author: rafael.zapata
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: PK_c_form_data
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: id_form
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: fg_active
+            type: BOOLEAN
+        - column:
+            name: str_js_data
+            type: TEXT
+        tableName: k_form_data
+- changeSet:
+    id: 231206-3
+    author: rafael.zapata
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: id_form
+        baseTableName: k_form_data
+        constraintName: rl_form_data_x_c_form
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: k_form
+        validate: true
+
